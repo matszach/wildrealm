@@ -1,4 +1,4 @@
-from map_module.tile_types.floor_tiles.types import *
+from src.map_module.tile_types.floor_tiles.types import *
 
 
 # ===== reference list =====

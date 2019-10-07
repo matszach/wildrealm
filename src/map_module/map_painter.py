@@ -1,7 +1,7 @@
 from PIL import Image
-from map_module.worldmap import WorldMap
-from map_module.tile_types.floor_tiles.list import FLOOR_TILES_BY_ID
-from map_module.tile_types.wall_tiles.list import WALL_TILES_BY_ID
+from src.map_module.worldmap import WorldMap
+from src.map_module.tile_types.floor_tiles.list import FLOOR_TILES_BY_ID
+from src.map_module.tile_types.wall_tiles.list import WALL_TILES_BY_ID
 
 
 class MapPainter:

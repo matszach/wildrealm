@@ -1,4 +1,4 @@
-from map_module.worldmap import WorldMap
+from src.map_module.worldmap import WorldMap
 import pickle
 
 

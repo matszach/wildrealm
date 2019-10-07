@@ -1,12 +1,11 @@
-from threading import Thread
-from map_module.worldmap import WorldMap
-from map_module.map_builder.shapers.floor_shaper import FloorShaper
-from map_module.map_builder.shapers.cavern_shaper import CavernShaper
-from map_module.map_builder.shapers.forest_shaper import ForestShaper
-from map_module.map_builder.shapers.ore_shaper import OreShaper
+from src.map_module.worldmap import WorldMap
+from src.map_module.map_builder.shapers.floor_shaper import FloorShaper
+from src.map_module.map_builder.shapers.cavern_shaper import CavernShaper
+from src.map_module.map_builder.shapers.forest_shaper import ForestShaper
+from src.map_module.map_builder.shapers.ore_shaper import OreShaper
 from random import random
 from perlin import SimplexNoise
-from map_module.tile_types.wall_tiles.types import \
+from src.map_module.tile_types.wall_tiles.types import \
     SurfaceRockWallTile, DeepRockWallTile, \
     CopperVeinWallTile, IronVeinWallTile, \
     SilverVeinWallTile, GoldVeinWallTile

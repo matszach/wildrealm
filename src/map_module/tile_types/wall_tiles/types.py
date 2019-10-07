@@ -1,5 +1,5 @@
-from map_module.tile_types.wall_tiles._wall_tile import WallTileType
-from map_module.tile_types.wall_tiles.const import *
+from src.map_module.tile_types.wall_tiles._wall_tile import WallTileType
+from src.map_module.tile_types.wall_tiles.const import *
 
 
 # ===== AIR =====

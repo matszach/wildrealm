@@ -1,8 +1,8 @@
-from map_module.map_builder.shapers._shaper import Shaper
-from map_module.worldmap import WorldMap
+from src.map_module.map_builder.shapers._shaper import Shaper
+from src.map_module.worldmap import WorldMap
 from random import random
-from map_module.tile_types.floor_tiles.types import GrassFloorTile
-from map_module.tile_types.wall_tiles.types import TreeWallTile
+from src.map_module.tile_types.floor_tiles.types import GrassFloorTile
+from src.map_module.tile_types.wall_tiles.types import TreeWallTile
 
 
 class ForestShaper(Shaper):

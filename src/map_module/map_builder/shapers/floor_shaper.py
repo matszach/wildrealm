@@ -1,6 +1,6 @@
-from map_module.worldmap import WorldMap
-from map_module.map_builder.shapers._shaper import Shaper
-from map_module.tile_types.floor_tiles.types import *
+from src.map_module.worldmap import WorldMap
+from src.map_module.map_builder.shapers._shaper import Shaper
+from src.map_module.tile_types.floor_tiles.types import *
 
 
 class FloorShaper(Shaper):
