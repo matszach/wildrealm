@@ -1,5 +1,6 @@
 from map_module.worldmap import WorldMap
 from map_module.map_builder.shapers._shaper import Shaper
+from map_module.tile_types.floor_tiles.types import *
 
 
 class FloorShaper(Shaper):
@@ -24,21 +25,21 @@ class FloorShaper(Shaper):
     def shape(self, wmap: WorldMap, step: float = 0.005, z_seed: float = 0,
               dw_limit: float = -0.07, sw_limit: float = 0.0,
               sn_limit: float = 0.04, gr_limit: float = 0.35,
-              sr_limit: float = 0.45):
+              sr_limit: float = 0.5):
 
         for x in range(wmap.x_size):
             for y in range(wmap.y_size):
                 v = self.noise_generator.noise3(x*step, y*step, z_seed)
                 if v < dw_limit:
-                    tile_id = 0
+                    tile_id = DeepWaterFloorTile.id
                 elif v < sw_limit:
-                    tile_id = 1
+                    tile_id = ShallowWaterFloorTile.id
                 elif v < sn_limit:
-                    tile_id = 2
+                    tile_id = SandFloorTile.id
                 elif v < gr_limit:
-                    tile_id = 3
+                    tile_id = GrassFloorTile.id
                 elif v < sr_limit:
-                    tile_id = 4
+                    tile_id = SurfaceStoneFloorTile.id
                 else:
-                    tile_id = 5
+                    tile_id = DeepStoneFloorTile.id
                 wmap.floors[x, y] = tile_id

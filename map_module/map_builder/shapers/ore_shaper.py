@@ -15,7 +15,7 @@ class OreShaper(Shaper):
         for x in range(wmap.x_size):
             for y in range(wmap.y_size):
 
-                # skip non rock walls
+                # skip not possible walls
                 if not wmap.walls[x, y] in possible_wall_ids:
                     continue
 

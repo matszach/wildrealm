@@ -1,5 +1,7 @@
 from map_module.worldmap import WorldMap
 from map_module.map_builder.shapers._shaper import Shaper
+from map_module.tile_types.wall_tiles.types import SurfaceRockWallTile, DeepRockWallTile
+from map_module.tile_types.floor_tiles.types import SurfaceStoneFloorTile, DeepStoneFloorTile
 
 
 class CavernShaper(Shaper):
@@ -14,14 +16,14 @@ class CavernShaper(Shaper):
         for x in range(wmap.x_size):
             for y in range(wmap.y_size):
 
-                if wmap.floors[x, y] == 4:
+                if wmap.floors[x, y] == SurfaceStoneFloorTile.id:
                     v = self.noise_generator.noise3(x*step, y*step, z_seed)
                     if v < st_limit:
-                        wmap.walls[x, y] = 2
-                elif wmap.floors[x, y] == 5:
+                        wmap.walls[x, y] = SurfaceRockWallTile.id
+                elif wmap.floors[x, y] == DeepStoneFloorTile.id:
                     v = self.noise_generator.noise3(x*step, y*step, z_seed)
                     if v < st_limit:
-                        wmap.walls[x, y] = 3
+                        wmap.walls[x, y] = DeepRockWallTile.id
 
 
 

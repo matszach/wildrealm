@@ -6,6 +6,10 @@ from map_module.map_builder.shapers.forest_shaper import ForestShaper
 from map_module.map_builder.shapers.ore_shaper import OreShaper
 from random import random
 from perlin import SimplexNoise
+from map_module.tile_types.wall_tiles.types import \
+    SurfaceRockWallTile, DeepRockWallTile, \
+    CopperVeinWallTile, IronVeinWallTile, \
+    SilverVeinWallTile, GoldVeinWallTile
 
 
 # builds a map_module map
@@ -28,10 +32,14 @@ class MapBuilder:
         print(self.cavern_shaper.get_message())
         self.cavern_shaper.shape(m, z_seed=self.get_z_seed())
         print(self.ore_shaper.get_message())
-        self.ore_shaper.shape(m, z_seed=self.get_z_seed(), ore_id=4, possible_wall_ids=[2, 3])
-        self.ore_shaper.shape(m, z_seed=self.get_z_seed(), ore_id=5, possible_wall_ids=[2, 3])
-        self.ore_shaper.shape(m, z_seed=self.get_z_seed(), ore_id=6, possible_wall_ids=[3])
-        self.ore_shaper.shape(m, z_seed=self.get_z_seed(), ore_id=7, possible_wall_ids=[3])
+        self.ore_shaper.shape(m, z_seed=self.get_z_seed(), ore_id=CopperVeinWallTile.id,
+                              possible_wall_ids=[SurfaceRockWallTile.id, DeepRockWallTile.id])
+        self.ore_shaper.shape(m, z_seed=self.get_z_seed(), ore_id=IronVeinWallTile.id,
+                              possible_wall_ids=[SurfaceRockWallTile.id, DeepRockWallTile.id])
+        self.ore_shaper.shape(m, z_seed=self.get_z_seed(), ore_id=SilverVeinWallTile.id,
+                              possible_wall_ids=[DeepRockWallTile.id])
+        self.ore_shaper.shape(m, z_seed=self.get_z_seed(), ore_id=GoldVeinWallTile.id,
+                              possible_wall_ids=[DeepRockWallTile.id])
 
         # forests and plants
         print(self.forest_shaper.get_message())

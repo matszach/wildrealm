@@ -1,6 +1,7 @@
 from PIL import Image
 from map_module.worldmap import WorldMap
-from map_module.tileinfo import FLOOR_IDS, WALL_IDS
+from map_module.tile_types.floor_tiles.list import FLOOR_TILES_BY_ID
+from map_module.tile_types.wall_tiles.list import WALL_TILES_BY_ID
 
 
 class MapPainter:
@@ -16,8 +17,8 @@ class MapPainter:
         pixels = image.load()
         for x in range(wmap.x_size):
             for y in range(wmap.y_size):
-                color = WALL_IDS[wmap.walls[x, y]][2]
+                color = WALL_TILES_BY_ID[wmap.walls[x, y]].color
                 if not color:
-                    color = FLOOR_IDS[wmap.floors[x, y]][2]
+                    color = FLOOR_TILES_BY_ID[wmap.floors[x, y]].color
                 pixels[x, y] = color
         image.save(path)
