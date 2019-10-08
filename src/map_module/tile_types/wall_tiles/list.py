@@ -14,7 +14,9 @@ _WALL_TILE_LIST = [
     GoldVeinWallTile,
     WoodenTreasureChestWallTile,
     WaterTreasureChestWallTile,
-    MagicTreasureChestWallTile
+    MagicTreasureChestWallTile,
+    PlankWallTile,
+    StoneBrickWallTile
 ]
 
 # ===== allows for quicker reference by tiles id =====

@@ -8,7 +8,9 @@ _FLOOR_TILE_LIST = [
     SandFloorTile,
     GrassFloorTile,
     SurfaceStoneFloorTile,
-    DeepStoneFloorTile
+    DeepStoneFloorTile,
+    PlankFloorTile,
+    StoneBrickFloorTile
 ]
 
 # ===== allows for quicker reference by tiles id =====

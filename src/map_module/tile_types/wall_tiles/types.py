@@ -161,3 +161,30 @@ class MagicTreasureChestWallTile(WallTileType):
     durability = WALL_DURABILITY_TIER_5
     drops_loot = True
     loot_table = ()  # TODO
+
+
+# ===== BUILDABLE =====
+class PlankWallTile(WallTileType):
+    id = id_gen.next()
+    name = 'plank wall'
+    image = None
+    color = (100, 70, 0)
+    blocks_movement = True
+    breakable = True
+    resistance = WALL_RESISTANCE_TIER_2
+    durability = WALL_DURABILITY_TIER_2
+    drops_loot = True
+    loot_table = ()  # TODO
+
+
+class StoneBrickWallTile(WallTileType):
+    id = id_gen.next()
+    name = 'stone brick wall'
+    image = None
+    color = (30, 10, 10)
+    blocks_movement = True
+    breakable = True
+    resistance = WALL_RESISTANCE_TIER_3
+    durability = WALL_DURABILITY_TIER_4
+    drops_loot = True
+    loot_table = ()  # TODO

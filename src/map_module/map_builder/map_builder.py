@@ -26,6 +26,8 @@ class MapBuilder:
         # terrain
         print('Generating terrain ...')
         self.floor_shaper.shape(m, z_seed=self.get_z_seed())
+        self.single_wall_spawner.spawn(m, SurfaceRockWallTile.id, [SurfaceStoneFloorTile.id], 0.01)
+        self.single_wall_spawner.spawn(m, DeepRockWallTile.id, [DeepStoneFloorTile.id], 0.02)
 
         # caves and ores
         print('Generating caverns ...')

@@ -19,3 +19,6 @@ class FloorTileType:
     # creatures that can swim are not slowed on this terrain
     # this includes swimming enemies and the player in a boat for example
     swimming: bool = False
+
+    # states if a wall can be placed on the tile
+    wallable: bool = True
