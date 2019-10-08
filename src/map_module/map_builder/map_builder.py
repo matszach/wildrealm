@@ -5,10 +5,9 @@ from src.map_module.map_builder.shapers.forest_shaper import ForestShaper
 from src.map_module.map_builder.shapers.ore_shaper import OreShaper
 from random import random
 from perlin import SimplexNoise
-from src.map_module.tile_types.wall_tiles.types import \
-    SurfaceRockWallTile, DeepRockWallTile, \
-    CopperVeinWallTile, IronVeinWallTile, \
-    SilverVeinWallTile, GoldVeinWallTile
+from src.map_module.tile_types.wall_tiles.types import *
+from src.map_module.tile_types.floor_tiles.types import *
+from src.map_module.map_builder.spawners.single_wall_spawner import SingleWallSpawner
 
 
 # builds a map_module map
@@ -44,6 +43,19 @@ class MapBuilder:
         # forests and plants
         print('Generating forests ...')
         self.forest_shaper.shape(m, z_seed=self.get_z_seed())
+        print('Placing plants ...')
+        self.single_wall_spawner.spawn(m, SeaweedWallTile.id, [ShallowWaterFloorTile.id], 0.01)
+
+        # treasure chests
+        print('Placing treasures ...')
+        self.single_wall_spawner.spawn(m, WoodenTreasureChestWallTile.id,
+                                       [GrassFloorTile.id], 0.0005)
+        self.single_wall_spawner.spawn(m, WoodenTreasureChestWallTile.id,
+                                       [SurfaceStoneFloorTile.id, DeepStoneFloorTile.id], 0.003)
+        self.single_wall_spawner.spawn(m, WaterTreasureChestWallTile.id,
+                                       [SandFloorTile.id, ShallowWaterFloorTile.id], 0.0005)
+        self.single_wall_spawner.spawn(m, MagicTreasureChestWallTile.id,
+                                       [DeepStoneFloorTile.id], 0.003)
 
         # finalisation
         print('New World created!')
@@ -58,3 +70,4 @@ class MapBuilder:
         self.forest_shaper = ForestShaper(noise_generator)
         self.ore_shaper = OreShaper(noise_generator)
 
+        self.single_wall_spawner = SingleWallSpawner()

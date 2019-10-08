@@ -16,7 +16,7 @@ class AirWallTile(WallTileType):
     drops_loot = False
 
 
-# ===== TREES =====
+# ===== TREES AND PLANTS =====
 class TreeWallTile(WallTileType):
     id = id_gen.next()
     name = 'tree'
@@ -26,6 +26,19 @@ class TreeWallTile(WallTileType):
     breakable = True
     resistance = WALL_RESISTANCE_TIER_1
     durability = WALL_DURABILITY_TIER_2
+    drops_loot = True
+    loot_table = ()  # TODO
+
+
+class SeaweedWallTile(WallTileType):
+    id = id_gen.next()
+    name = 'seaweed'
+    image = None
+    color = (150, 250, 0)
+    blocks_movement = True
+    breakable = True
+    resistance = WALL_RESISTANCE_TIER_1
+    durability = WALL_DURABILITY_TIER_1
     drops_loot = True
     loot_table = ()  # TODO
 
@@ -106,5 +119,45 @@ class GoldVeinWallTile(WallTileType):
     breakable = True
     resistance = WALL_RESISTANCE_TIER_5
     durability = WALL_DURABILITY_TIER_4
+    drops_loot = True
+    loot_table = ()  # TODO
+
+
+# ===== CHESTS AND TREASURES =====
+class WoodenTreasureChestWallTile(WallTileType):
+    id = id_gen.next()
+    name = 'wooden treasure chest'
+    image = None
+    color = (60, 20, 0)
+    blocks_movement = True
+    breakable = True
+    resistance = WALL_RESISTANCE_TIER_1
+    durability = WALL_DURABILITY_TIER_3
+    drops_loot = True
+    loot_table = ()  # TODO
+
+
+class WaterTreasureChestWallTile(WallTileType):
+    id = id_gen.next()
+    name = 'water treasure chest'
+    image = None
+    color = (0, 250, 250)
+    blocks_movement = True
+    breakable = True
+    resistance = WALL_RESISTANCE_TIER_3
+    durability = WALL_DURABILITY_TIER_3
+    drops_loot = True
+    loot_table = ()  # TODO
+
+
+class MagicTreasureChestWallTile(WallTileType):
+    id = id_gen.next()
+    name = 'magic treasure chest'
+    image = None
+    color = (250, 0, 250)
+    blocks_movement = True
+    breakable = True
+    resistance = WALL_RESISTANCE_TIER_5
+    durability = WALL_DURABILITY_TIER_5
     drops_loot = True
     loot_table = ()  # TODO
