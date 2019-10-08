@@ -8,6 +8,7 @@ from perlin import SimplexNoise
 from src.map_module.tile_types.wall_tiles.types import *
 from src.map_module.tile_types.floor_tiles.types import *
 from src.map_module.map_builder.spawners.single_wall_spawner import SingleWallSpawner
+from src.map_module.map_builder.structure_generators.plank_shack_generator import PlankShackGenerator
 
 
 # builds a map_module map
@@ -48,6 +49,10 @@ class MapBuilder:
         print('Placing plants ...')
         self.single_wall_spawner.spawn(m, SeaweedWallTile.id, [ShallowWaterFloorTile.id], 0.01)
 
+        # structures
+        print('Generating structures ...')
+        self.plank_shack_generator.generate(m, [GrassFloorTile.id], 0.001, 100)
+
         # treasure chests
         print('Placing treasures ...')
         self.single_wall_spawner.spawn(m, WoodenTreasureChestWallTile.id,
@@ -73,3 +78,4 @@ class MapBuilder:
         self.ore_shaper = OreShaper(noise_generator)
 
         self.single_wall_spawner = SingleWallSpawner()
+        self.plank_shack_generator = PlankShackGenerator()
