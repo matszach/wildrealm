@@ -6,10 +6,6 @@ from src.map_module.tile_types.floor_tiles.types import SurfaceStoneFloorTile, D
 
 class CavernShaper(Shaper):
 
-    @staticmethod
-    def get_message():
-        return 'Shaping cavern systems'
-
     def shape(self, wmap: WorldMap, step: float = 0.07, z_seed: float = 0,
               st_limit: float = 0.4):
 

@@ -1,10 +1,14 @@
 from src.map_module.tile_types.floor_tiles._floor_tile import FloorTileType
 from src.map_module.tile_types.floor_tiles.const import *
+from src.map_module.tile_types.id_generator import IdGenerator
+
+
+id_gen = IdGenerator()
 
 
 # ===== WATER =====
 class DeepWaterFloorTile(FloorTileType):
-    id = 0
+    id = id_gen.next()
     name = 'deep water'
     image = None
     color = (0, 0, 80)
@@ -13,7 +17,7 @@ class DeepWaterFloorTile(FloorTileType):
 
 
 class ShallowWaterFloorTile(FloorTileType):
-    id = 1
+    id = id_gen.next()
     name = 'shallow water'
     image = None
     color = (0, 0, 180)
@@ -23,7 +27,7 @@ class ShallowWaterFloorTile(FloorTileType):
 
 # ===== SAND ====
 class SandFloorTile(FloorTileType):
-    id = 2
+    id = id_gen.next()
     name = 'sand'
     image = None
     color = (180, 180, 0)
@@ -33,7 +37,7 @@ class SandFloorTile(FloorTileType):
 
 # ===== GRASS =====
 class GrassFloorTile(FloorTileType):
-    id = 3
+    id = id_gen.next()
     name = 'grass'
     image = None
     color = (0, 180, 0)
@@ -43,7 +47,7 @@ class GrassFloorTile(FloorTileType):
 
 # ===== STONE =====
 class SurfaceStoneFloorTile(FloorTileType):
-    id = 4
+    id = id_gen.next()
     name = 'surface stone'
     image = None
     color = (110, 110, 110)
@@ -52,7 +56,7 @@ class SurfaceStoneFloorTile(FloorTileType):
 
 
 class DeepStoneFloorTile(FloorTileType):
-    id = 5
+    id = id_gen.next()
     name = 'deep stone'
     image = None
     color = (80, 80, 80)

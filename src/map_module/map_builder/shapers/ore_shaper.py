@@ -5,10 +5,6 @@ from random import random
 
 class OreShaper(Shaper):
 
-    @staticmethod
-    def get_message():
-        return 'Placing ores'
-
     def shape(self, wmap: WorldMap, possible_wall_ids: list, step: float = 0.08, z_seed: float = 0,
               ore_id: int = 3, limit: float = -0.85, density: float = 0.8):
 

@@ -5,10 +5,6 @@ from src.map_module.tile_types.floor_tiles.types import *
 
 class FloorShaper(Shaper):
 
-    @staticmethod
-    def get_message():
-        return 'Shaping water and land masses'
-
     """
     Generates ids for WorldMap's floors
     @:param wmap - map_module map that's being worked on

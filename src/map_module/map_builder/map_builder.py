@@ -21,16 +21,17 @@ class MapBuilder:
     def build(self, x_size: int = 1024, y_size: int = 1024):
 
         # initialisation
+        print('Generating new world ...')
         m = WorldMap(x_size=x_size, y_size=y_size)
 
         # terrain
-        print(self.floor_shaper.get_message())
+        print('Generating terrain ...')
         self.floor_shaper.shape(m, z_seed=self.get_z_seed())
 
         # caves and ores
-        print(self.cavern_shaper.get_message())
+        print('Generating caverns ...')
         self.cavern_shaper.shape(m, z_seed=self.get_z_seed())
-        print(self.ore_shaper.get_message())
+        print('Placing ores ...')
         self.ore_shaper.shape(m, z_seed=self.get_z_seed(), ore_id=CopperVeinWallTile.id,
                               possible_wall_ids=[SurfaceRockWallTile.id, DeepRockWallTile.id])
         self.ore_shaper.shape(m, z_seed=self.get_z_seed(), ore_id=IronVeinWallTile.id,
@@ -41,10 +42,11 @@ class MapBuilder:
                               possible_wall_ids=[DeepRockWallTile.id])
 
         # forests and plants
-        print(self.forest_shaper.get_message())
+        print('Generating forests ...')
         self.forest_shaper.shape(m, z_seed=self.get_z_seed())
 
         # finalisation
+        print('New World created!')
         return m
 
     # constructor
