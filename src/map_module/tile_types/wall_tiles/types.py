@@ -43,6 +43,19 @@ class SeaweedWallTile(WallTileType):
     loot_table = ()  # TODO
 
 
+class BerryBushWallTile(WallTileType):
+    id = id_gen.next()
+    name = 'berry bush'
+    image = None
+    color = (250, 0, 0)
+    blocks_movement = True
+    breakable = True
+    resistance = WALL_RESISTANCE_TIER_1
+    durability = WALL_DURABILITY_TIER_2
+    drops_loot = True
+    loot_table = ()  # TODO
+
+
 # ===== ROCK =====
 class SurfaceRockWallTile(WallTileType):
     id = id_gen.next()

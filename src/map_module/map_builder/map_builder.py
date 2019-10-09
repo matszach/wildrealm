@@ -1,14 +1,16 @@
 from src.map_module.worldmap import WorldMap
-from src.map_module.map_builder.shapers.floor_shaper import FloorShaper
-from src.map_module.map_builder.shapers.cavern_shaper import CavernShaper
-from src.map_module.map_builder.shapers.forest_shaper import ForestShaper
-from src.map_module.map_builder.shapers.ore_shaper import OreShaper
 from random import random
 from perlin import SimplexNoise
 from src.map_module.tile_types.wall_tiles.types import *
 from src.map_module.tile_types.floor_tiles.types import *
+from src.map_module.map_builder.shapers.floor_shaper import FloorShaper
+from src.map_module.map_builder.shapers.cavern_shaper import CavernShaper
+from src.map_module.map_builder.shapers.forest_shaper import ForestShaper
+from src.map_module.map_builder.shapers.ore_shaper import OreShaper
 from src.map_module.map_builder.spawners.single_wall_spawner import SingleWallSpawner
+from src.map_module.map_builder.spawners.single_wall_replacer import SingleWallReplacer
 from src.map_module.map_builder.structure_generators.plank_shack_generator import PlankShackGenerator
+from src.map_module.map_builder.structure_generators.mountain_fortress_generator import MountainFortressGenerator
 
 
 # builds a map_module map
@@ -48,10 +50,12 @@ class MapBuilder:
         self.forest_shaper.shape(m, z_seed=self.get_z_seed())
         print('Placing plants ...')
         self.single_wall_spawner.spawn(m, SeaweedWallTile.id, [ShallowWaterFloorTile.id], 0.01)
+        self.single_wall_replacer.spawn(m, BerryBushWallTile.id, [TreeWallTile.id], 0.02)
 
         # structures
         print('Generating structures ...')
         self.plank_shack_generator.generate(m, [GrassFloorTile.id], 0.001, 100)
+        self.mountain_fortress_generator.generate(m, [SurfaceStoneFloorTile.id], 0.0005, 300)
 
         # treasure chests
         print('Placing treasures ...')
@@ -78,4 +82,7 @@ class MapBuilder:
         self.ore_shaper = OreShaper(noise_generator)
 
         self.single_wall_spawner = SingleWallSpawner()
+        self.single_wall_replacer = SingleWallReplacer()
+
         self.plank_shack_generator = PlankShackGenerator()
+        self.mountain_fortress_generator = MountainFortressGenerator()

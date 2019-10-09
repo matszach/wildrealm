@@ -6,6 +6,7 @@ _WALL_TILE_LIST = [
     AirWallTile,
     TreeWallTile,
     SeaweedWallTile,
+    BerryBushWallTile,
     SurfaceRockWallTile,
     DeepRockWallTile,
     CopperVeinWallTile,
