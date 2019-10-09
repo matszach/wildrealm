@@ -2,7 +2,7 @@ from src.game_core_module.game_state.game_state import GameState
 import pickle
 
 
-# saves / loads the WorldMap
+# saves / loads the game state
 class GameStateSaverLoader:
 
     @staticmethod
