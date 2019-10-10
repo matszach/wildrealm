@@ -43,13 +43,13 @@ class Game:
     @staticmethod
     def launch():
 
+        flags = pygame.RESIZABLE | pygame.DOUBLEBUF
+        surface = pygame.display.set_mode(ViewInfo.DEFAULT_WINDOW_SIZE, flags)
+        clock = pygame.time.Clock()
+
         pygame.font.init()
         pygame.display.set_caption('Wildrealm')
         # pygame.display.set_icon(GAME_ICON)
-
-        flags = pygame.RESIZABLE | pygame.DOUBLEBUF
-        surface = pygame.display.set_mode((500, 500), flags)
-        clock = pygame.time.Clock()
 
         while True:
 
@@ -59,9 +59,9 @@ class Game:
                 if event.type == pygame.QUIT:
                     sys.exit()
                 if event.type == pygame.VIDEORESIZE:
-                    # vi.adjust(event.w, event.h)
+                    ViewInfo.adjust(event)
                     surface = pygame.display.set_mode((event.w, event.h), flags)
 
-            surface.fill(ViewInfo.background)
+            surface.fill(ViewInfo.BACKGROUND_COLOR)
 
             pygame.display.update()
