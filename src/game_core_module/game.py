@@ -3,6 +3,7 @@ from src.game_core_module.game_state.new_game_starter import NewGameStarter
 from src.game_core_module.game_state.game_state_saver_loader import GameStateSaverLoader
 from src.map_module.map_painter import MapPainter
 from src.display_module.view_info import ViewInfo
+from src.game_core_module.app_states import AppStates
 import pygame
 import sys
 
@@ -13,8 +14,8 @@ class Game:
     # current game state
     game_state: GameState = None
 
-    # states whether the game is pause or not
-    paused: bool = True
+    # app's current mode (in game / menu / paused)
+    app_status: int = AppStates.MAIN_MENU
 
     # generates new game state
     new_game_starter: NewGameStarter = NewGameStarter()

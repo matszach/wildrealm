@@ -21,6 +21,10 @@ class ViewInfo:
     # current window size
     window_size: tuple = DEFAULT_WINDOW_SIZE
 
+    """
+    adjust the stored variables to match the current screen
+    those will be used to draw on the game canvas
+    """
     @staticmethod
     def adjust(event):
         ViewInfo.window_size = (event.w, event.h)

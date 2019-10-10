@@ -15,3 +15,6 @@ class WorldMap:
 
         # wall tile ids
         self.walls = numpy.zeros((self.x_size, self.y_size))
+
+        # table of tiles marked as explored/un-explored by the player
+        self.explored_tiles = numpy.zeros((self.x_size, self.y_size), dtype=bool)
