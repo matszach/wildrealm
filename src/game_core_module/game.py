@@ -6,6 +6,7 @@ from src.display_module.view_info import ViewInfo
 from src.game_core_module.app_states import AppStates
 import pygame
 import sys
+from src.threading_module.thread_manager import ThreadManager
 
 
 # represents the application proper
@@ -15,7 +16,7 @@ class Game:
     game_state: GameState = None
 
     # app's current mode (in game / menu / paused)
-    app_status: int = AppStates.MAIN_MENU
+    app_state: int = AppStates.MAIN_MENU
 
     # generates new game state
     new_game_starter: NewGameStarter = NewGameStarter()
@@ -39,10 +40,23 @@ class Game:
         Game.game_state = Game.saver_loader.load(f'saved_games\\game{slot_id}.sav')
 
     """
-    initiates the game proper
+    starts a new game
+    """
+    @staticmethod
+    def start_new_game():
+        # todo args and loading state
+        Game.game_state = Game.new_game_starter.new_game()
+        Game.app_state = AppStates.IN_GAME_PLAY
+
+    """
+    initiates the app proper
     """
     @staticmethod
     def launch():
+        ThreadManager.start_thread(Game._main_loop)
+
+    @staticmethod
+    def _main_loop():
 
         flags = pygame.RESIZABLE | pygame.DOUBLEBUF
         surface = pygame.display.set_mode(ViewInfo.DEFAULT_WINDOW_SIZE, flags)
@@ -58,6 +72,7 @@ class Game:
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    # todo on qut actions here (saves / forced thread shutdowns?)
                     sys.exit()
                 if event.type == pygame.VIDEORESIZE:
                     ViewInfo.adjust(event)

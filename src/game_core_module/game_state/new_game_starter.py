@@ -13,5 +13,5 @@ class NewGameStarter:
         return gs
 
     # constructor
-    def __inti__(self):
+    def __init__(self):
         self.builder = MapBuilder()
