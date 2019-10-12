@@ -3,7 +3,10 @@ from src.game_core_module.game_state.new_game_starter import NewGameStarter
 from src.game_core_module.game_state.game_state_saver_loader import GameStateSaverLoader
 from src.map_module.map_painter import MapPainter
 from src.display_module.view_info import ViewInfo
+from src.display_module.view_display_handler import ViewDisplayHandler
 from src.game_core_module.app_states import AppStates
+from src.game_core_module.app_state_handler import AppStateHandler
+from src.game_core_module.user_input_handler import UserInputHandler
 import pygame
 import sys
 from src.threading_module.thread_manager import ThreadManager
@@ -26,6 +29,15 @@ class Game:
 
     # outputs the map as a .png
     map_painter: MapPainter = MapPainter()
+
+    # paints current state's view
+    view_display_handler: ViewDisplayHandler = ViewDisplayHandler()
+
+    # manages user input
+    user_input_handler: UserInputHandler = UserInputHandler()
+
+    # checks for conditions to switch between app states
+    app_state_handler: AppStateHandler = AppStateHandler()
 
     """
     game state saving / loading

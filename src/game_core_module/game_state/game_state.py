@@ -12,9 +12,6 @@ class GameState:
         # creatures actively taking actions/moving
         self.active_creatures = []
 
-        # creatures waiting to go active or to be despawned
-        self.dormant_creatures = []
-
         # world map data
         self.world_map: WorldMap = wmap
 
