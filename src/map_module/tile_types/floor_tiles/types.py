@@ -1,6 +1,6 @@
 from src.map_module.tile_types.floor_tiles._floor_tile import FloorTileType
 from src.map_module.tile_types.floor_tiles.const import *
-from src.map_module.tile_types.id_generator import IdGenerator
+from util.id_generator import IdGenerator
 
 
 id_gen = IdGenerator()

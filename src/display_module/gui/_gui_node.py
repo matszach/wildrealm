@@ -1,6 +1,7 @@
 import pygame
 import time
 from src.threading_module.thread_manager import ThreadManager
+from src.display_module.view_info import ViewInfo
 
 
 # parent class to all gui elements such as buttons or decorations
@@ -23,7 +24,7 @@ class GuiNode:
         self.disabled = False
         ThreadManager.start_daemon(self._listen())
 
-    def disable(self):
+    def deactivate(self):
         self.disabled = True
 
     def _listen(self):
@@ -48,10 +49,14 @@ class GuiNode:
     mouse status checking
     """
     def _is_mouse_on(self):
-        pass
+        pos = pygame.mouse.get_pos()
+        mouse_x = (pos[0] - ViewInfo.offset_x)/ViewInfo.unit
+        mouse_y = (pos[1] - ViewInfo.offset_y)/ViewInfo.unit
+        return self.x_start < mouse_x < self.x_end and self.y_start < mouse_y < self.y_end
 
-    def _is_mouse_pressed(self):
-        pass
+    @staticmethod
+    def _is_mouse_pressed():
+        return pygame.mouse.get_pressed[0] == 1
 
     # constructor
     def __init__(self, pos_x: float = 0, pos_y: float = 0, width: float = 1, height: float = 1):

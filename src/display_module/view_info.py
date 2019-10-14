@@ -1,3 +1,4 @@
+import pygame
 
 
 class ViewInfo:
@@ -6,7 +7,7 @@ class ViewInfo:
     BACKGROUND_COLOR: tuple = (0, 0, 0)
 
     # window size in unit
-    SIZE_UNITS_X: int = 30
+    SIZE_UNITS_X: int = 36
     SIZE_UNITS_Y: int = 20
 
     # on-startup unit size
@@ -14,6 +15,10 @@ class ViewInfo:
 
     # unit size - display unit of measure
     unit: float = DEFAULT_UNIT
+
+    # display offsets for disproportionately
+    offset_x: float = 0
+    offset_y: float = 0
 
     # on-startup window size
     DEFAULT_WINDOW_SIZE: tuple = (int(SIZE_UNITS_X * DEFAULT_UNIT), int(SIZE_UNITS_Y * DEFAULT_UNIT))
@@ -29,4 +34,13 @@ class ViewInfo:
     def adjust(event):
         ViewInfo.window_size = (event.w, event.h)
         ViewInfo.unit = min(event.w/ViewInfo.SIZE_UNITS_X, event.h/ViewInfo.SIZE_UNITS_Y)
+        ViewInfo.offset_x = (event.w - (ViewInfo.unit * ViewInfo.SIZE_UNITS_X)) / 2
+        ViewInfo.offset_y = (event.h - (ViewInfo.unit * ViewInfo.SIZE_UNITS_Y)) / 2
 
+    """
+    displays the usable window area as a rectangle
+    """
+    @staticmethod
+    def display_usable_area(surface):
+        pygame.draw.rect(surface, (100, 100, 100), (ViewInfo.offset_x, ViewInfo.offset_y,
+                         (ViewInfo.unit * ViewInfo.SIZE_UNITS_X), (ViewInfo.unit * ViewInfo.SIZE_UNITS_Y)), 2)

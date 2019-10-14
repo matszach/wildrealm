@@ -3,13 +3,12 @@ from src.game_core_module.game_state.new_game_starter import NewGameStarter
 from src.game_core_module.game_state.game_state_saver_loader import GameStateSaverLoader
 from src.map_module.map_painter import MapPainter
 from src.display_module.view_info import ViewInfo
-from src.display_module.view_display_handler import ViewDisplayHandler
 from src.game_core_module.app_states import AppStates
-from src.game_core_module.app_state_handler import AppStateHandler
-from src.game_core_module.user_input_handler import UserInputHandler
 import pygame
 import sys
+import time
 from src.threading_module.thread_manager import ThreadManager
+from src.display_module.view_displayer import ViewDisplayer
 
 
 # represents the application proper
@@ -30,14 +29,8 @@ class Game:
     # outputs the map as a .png
     map_painter: MapPainter = MapPainter()
 
-    # paints current state's view
-    view_display_handler: ViewDisplayHandler = ViewDisplayHandler()
-
-    # manages user input
-    user_input_handler: UserInputHandler = UserInputHandler()
-
-    # checks for conditions to switch between app states
-    app_state_handler: AppStateHandler = AppStateHandler()
+    # displays the view based on app state
+    view_displayer: ViewDisplayer = ViewDisplayer()
 
     """
     game state saving / loading
@@ -56,9 +49,30 @@ class Game:
     """
     @staticmethod
     def start_new_game():
-        # todo args and loading state
-        Game.game_state = Game.new_game_starter.new_game()
-        Game.app_state = AppStates.IN_GAME_PLAY
+        Game.game_state = Game.new_game_starter.prepare_new_game()
+        Game.app_state = AppStates.GENERATING_MAP
+
+    """
+    handles the app shutdown
+    """
+    @staticmethod
+    def handle_close():
+        pass  # TODO
+
+    """
+    checks for app state switch conditions and applies changes if necessary
+    """
+    @staticmethod
+    def _app_state_check():
+        while True:
+            time.sleep(0.1)
+            if Game.app_state == AppStates.GENERATING_MAP:
+                if Game.new_game_starter.is_ready():
+                    Game.game_state = Game.new_game_starter.get_prepared_game_state()
+                    Game.app_state = AppStates.IN_GAME_PLAY
+            elif Game.app_state == AppStates.IN_GAME_PLAY:
+                if Game.game_state.player.is_dead():
+                    Game.app_state = AppStates.IN_GAME_GAME_OVER
 
     """
     initiates the app proper
@@ -66,6 +80,7 @@ class Game:
     @staticmethod
     def launch():
         ThreadManager.start_thread(Game._main_loop)
+        ThreadManager.start_daemon(Game._app_state_check())
 
     @staticmethod
     def _main_loop():
@@ -84,12 +99,14 @@ class Game:
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    # todo on qut actions here (saves / forced thread shutdowns?)
+                    Game.handle_close()
                     sys.exit()
                 if event.type == pygame.VIDEORESIZE:
                     ViewInfo.adjust(event)
                     surface = pygame.display.set_mode((event.w, event.h), flags)
 
             surface.fill(ViewInfo.BACKGROUND_COLOR)
+            ViewInfo.display_usable_area(surface)
+            Game.view_displayer.display(surface, Game.game_state, Game.app_state)
 
             pygame.display.update()
