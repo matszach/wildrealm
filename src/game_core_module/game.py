@@ -10,6 +10,7 @@ import time
 from src.threading_module.thread_manager import ThreadManager
 from src.display_module.view_displayer import ViewDisplayer
 from src.display_module.gameplay_displayer import GameplayDisplayer
+from src.input_module.key_input_handler import KeyInputHandler
 
 
 # represents the application proper
@@ -33,8 +34,11 @@ class Game:
     # displays the view based on app state
     view_displayer: ViewDisplayer = ViewDisplayer()
 
-    # displays the game-play based on the app state
+    # displays the gameplay based on the app state
     gameplay_displayer: GameplayDisplayer = GameplayDisplayer()
+
+    # handles user key input base on the app state
+    key_input_handler: KeyInputHandler = KeyInputHandler()
 
     """
     game state saving / loading
@@ -108,6 +112,8 @@ class Game:
                 if event.type == pygame.VIDEORESIZE:
                     ViewInfo.adjust(event)
                     surface = pygame.display.set_mode((event.w, event.h), flags)
+
+            Game.key_input_handler.handle(Game.app_state, Game.game_state)
 
             surface.fill(ViewInfo.BACKGROUND_COLOR)
             ViewInfo.display_usable_area(surface)

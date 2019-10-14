@@ -7,8 +7,8 @@ class ViewInfo:
     BACKGROUND_COLOR: tuple = (0, 0, 0)
 
     # window size in unit
-    SIZE_UNITS_X: int = 36
-    SIZE_UNITS_Y: int = 20
+    SIZE_UNITS_X: int = 35
+    SIZE_UNITS_Y: int = 21
 
     # on-startup unit size
     DEFAULT_UNIT: float = 32.0

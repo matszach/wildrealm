@@ -7,7 +7,7 @@ class NewGameStarter:
 
     def prepare_new_game(self):
         # TODO arguments here
-        self.builder.build(1024, 1024)
+        self.builder.build(256, 256)
 
     def is_ready(self):
         return self.builder.map_ready
