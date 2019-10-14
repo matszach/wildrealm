@@ -1,11 +1,37 @@
-from src.game_core_module.game_state.game_state import GameState
 from src.game_core_module.app_states import AppStates
+from src.display_module.views.view import View
 
 
 class ViewDisplayer:
 
     """
+    checks if the app state has been changed before drawing the view
+    """
+    def _app_state_changed(self, app_state: int):
+        return self.current_app_state == app_state
+
+    """
+    matches the displayer view to the one required by new app state
+    """
+    def _match_view_to_state(self, app_state: int):
+        self.current_view.close()
+        self.current_app_state = app_state
+        self.current_view = self._get_view_by_app_state(app_state)
+
+    def _get_view_by_app_state(self, app_state: int) -> View:
+        pass  # TODO
+
+    """
     based on current game state displays the correct view
     """
-    def display(self, surface, game_state: GameState, app_state: int):
-        pass
+    def display(self, surface, app_state: int):
+        if self._app_state_changed(app_state):
+            self._match_view_to_state(app_state)
+        # for node in self.current_view.nodes:  # TODO
+        #     node.display(surface)
+
+    def __init__(self):
+
+        # default values to overridden
+        self.current_view: View = None
+        self.current_app_state = -1

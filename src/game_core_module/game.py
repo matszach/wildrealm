@@ -9,6 +9,7 @@ import sys
 import time
 from src.threading_module.thread_manager import ThreadManager
 from src.display_module.view_displayer import ViewDisplayer
+from src.display_module.gameplay_displayer import GameplayDisplayer
 
 
 # represents the application proper
@@ -31,6 +32,9 @@ class Game:
 
     # displays the view based on app state
     view_displayer: ViewDisplayer = ViewDisplayer()
+
+    # displays the game-play based on the app state
+    gameplay_displayer: GameplayDisplayer = GameplayDisplayer()
 
     """
     game state saving / loading
@@ -80,7 +84,7 @@ class Game:
     @staticmethod
     def launch():
         ThreadManager.start_thread(Game._main_loop)
-        ThreadManager.start_daemon(Game._app_state_check())
+        ThreadManager.start_daemon(Game._app_state_check)
 
     @staticmethod
     def _main_loop():
@@ -107,6 +111,7 @@ class Game:
 
             surface.fill(ViewInfo.BACKGROUND_COLOR)
             ViewInfo.display_usable_area(surface)
-            Game.view_displayer.display(surface, Game.game_state, Game.app_state)
+            Game.gameplay_displayer.display(surface, Game.app_state, Game.game_state)
+            Game.view_displayer.display(surface, Game.app_state)
 
             pygame.display.update()
