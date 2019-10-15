@@ -101,8 +101,8 @@ class Game:
     """
     @staticmethod
     def launch():
-        Game._main_loop()
         ThreadManager.start_daemon(Game._app_state_check)
+        Game._main_loop()
 
     @staticmethod
     def _main_loop():
