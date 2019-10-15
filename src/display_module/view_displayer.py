@@ -3,7 +3,7 @@ from src.display_module.views.view import View
 from src.display_module.views.main_menu_view import MainMenuView
 from src.display_module.views.about_view import AboutView
 from src.display_module.views.load_game_view import LoadGameView
-from src.display_module.views.new_game_menu import NewGameView
+from src.display_module.views.new_game_view import NewGameView
 from src.display_module.views.generating_world_view import GeneratingWorldView
 
 

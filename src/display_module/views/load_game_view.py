@@ -17,8 +17,8 @@ class LoadGameView(View):
             self.nodes.append(load_button)
 
         # return button
-        about_button = Button(13, 18, 9, 2, 'Return',
-                              lambda: Game.set_app_state(AppStates.MAIN_MENU))
-        about_button.activate()
-        self.nodes.append(about_button)
+        return_button = Button(13, 18, 9, 2, 'Return',
+                               lambda: Game.set_app_state(AppStates.MAIN_MENU))
+        return_button.activate()
+        self.nodes.append(return_button)
 

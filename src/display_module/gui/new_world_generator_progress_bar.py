@@ -14,7 +14,7 @@ class NewWorldGeneratorProgressBar(GuiNode):
         font_size = u/1.2
         font_color = (0, 0, 0)
         background_color = (30, 30, 60)
-        bar_color = (50, 50, 90)
+        bar_color = (50, 50, 130)
 
         progress = Game.new_game_starter.get_progress()
 

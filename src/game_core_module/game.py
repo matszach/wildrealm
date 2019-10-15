@@ -70,7 +70,7 @@ class Game:
     starts a new game
     """
     @staticmethod
-    def start_new_game(world_size: int = 1024):
+    def start_new_game(world_size: int):
         Game.game_state = Game.new_game_starter.prepare_new_game(world_size)
         Game.app_state = AppStates.GENERATING_MAP
 
