@@ -11,6 +11,7 @@ from src.threading_module.thread_manager import ThreadManager
 from src.display_module.view_displayer import ViewDisplayer
 from src.display_module.gameplay_displayer import GameplayDisplayer
 from src.input_module.key_input_handler import KeyInputHandler
+from src.input_module.mouse_handler import MouseHandler
 
 
 # represents the application proper
@@ -39,6 +40,13 @@ class Game:
 
     # handles user key input base on the app state
     key_input_handler: KeyInputHandler = KeyInputHandler()
+
+    """
+    sets app state
+    """
+    @staticmethod
+    def set_app_state(app_state: int):
+        Game.app_state = app_state
 
     """
     game state saving / loading
@@ -87,7 +95,7 @@ class Game:
     """
     @staticmethod
     def launch():
-        ThreadManager.start_thread(Game._main_loop)
+        Game._main_loop()
         ThreadManager.start_daemon(Game._app_state_check)
 
     @staticmethod
@@ -104,6 +112,9 @@ class Game:
         while True:
 
             clock.tick(60)
+
+            MouseHandler.mouse_pos = pygame.mouse.get_pos()
+            MouseHandler.mouse_pressed = pygame.mouse.get_pressed()
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
