@@ -5,9 +5,9 @@ from src.creature_module.player import Player
 
 class NewGameStarter:
 
-    def prepare_new_game(self):
+    def prepare_new_game(self, world_size: int):
         # TODO arguments here
-        self.builder.build(256, 256)
+        self.builder.build(world_size, world_size)
 
     def is_ready(self):
         return self.builder.map_ready

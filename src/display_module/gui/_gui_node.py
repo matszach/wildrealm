@@ -72,7 +72,7 @@ class GuiNode:
 
         # mouse states
         self.hidden: bool = False
-        self.disabled: bool = False
+        self.disabled: bool = True
         self.pressed: bool = False
         self.hover: bool = False
 

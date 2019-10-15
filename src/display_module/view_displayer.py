@@ -1,6 +1,8 @@
 from src.game_core_module.app_states import AppStates
 from src.display_module.views.view import View
 from src.display_module.views.main_menu_view import MainMenuView
+from src.display_module.views.about_view import AboutView
+from src.display_module.views.load_game_view import LoadGameView
 
 
 class ViewDisplayer:
@@ -24,6 +26,11 @@ class ViewDisplayer:
     def _get_view_by_app_state(app_state: int) -> View:
         if app_state == AppStates.MAIN_MENU:
             return MainMenuView()
+        elif app_state == AppStates.ABOUT:
+            return AboutView()
+        elif app_state == AppStates.LOAD_GAME_MENU:
+            return  LoadGameView()
+
 
     """
     based on current game state displays the correct view

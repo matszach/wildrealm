@@ -7,6 +7,7 @@ from src.game_core_module.app_states import AppStates
 import pygame
 import sys
 import time
+import os.path
 from src.threading_module.thread_manager import ThreadManager
 from src.display_module.view_displayer import ViewDisplayer
 from src.display_module.gameplay_displayer import GameplayDisplayer
@@ -52,6 +53,10 @@ class Game:
     game state saving / loading
     """
     @staticmethod
+    def load_file_exists(slot_id: int):
+        return os.path.isfile(f'saved_games\\game{slot_id}.sav')
+
+    @staticmethod
     def save_game(slot_id: int):
         Game.saver_loader.save(Game.game_state, f'saved_games\\game{slot_id}.sav')
         Game.map_painter.paint_map(Game.game_state.world_map, f'saved_games\\map{slot_id}.png')
@@ -59,13 +64,14 @@ class Game:
     @staticmethod
     def load_game(slot_id: int):
         Game.game_state = Game.saver_loader.load(f'saved_games\\game{slot_id}.sav')
+        Game.app_state = AppStates.IN_GAME_PLAY
 
     """
     starts a new game
     """
     @staticmethod
-    def start_new_game():
-        Game.game_state = Game.new_game_starter.prepare_new_game()
+    def start_new_game(world_size: int = 1024):
+        Game.game_state = Game.new_game_starter.prepare_new_game(world_size)
         Game.app_state = AppStates.GENERATING_MAP
 
     """
