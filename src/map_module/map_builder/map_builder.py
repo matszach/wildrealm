@@ -34,35 +34,48 @@ class MapBuilder:
         # terrain
         self.message = 'Generating terrain ...'
         self.floor_shaper.shape(self.wmap, z_seed=self.get_z_seed())
+        self.completion = 10
         self.single_wall_spawner.spawn(self.wmap, SurfaceRockWallTile.id, [SurfaceStoneFloorTile.id], 0.01)
+        self.completion = 20
         self.single_wall_spawner.spawn(self.wmap, DeepRockWallTile.id, [DeepStoneFloorTile.id], 0.02)
+        self.completion = 30
 
         # caves and ores
         self.message = 'Generating caverns ...'
         self.cavern_shaper.shape(self.wmap, z_seed=self.get_z_seed())
+        self.completion = 40
 
         self.message = 'Placing ores ...'
         self.ore_shaper.shape(self.wmap, z_seed=self.get_z_seed(), ore_id=CopperVeinWallTile.id,
                               possible_wall_ids=[SurfaceRockWallTile.id, DeepRockWallTile.id])
+        self.completion = 45
         self.ore_shaper.shape(self.wmap, z_seed=self.get_z_seed(), ore_id=IronVeinWallTile.id,
                               possible_wall_ids=[SurfaceRockWallTile.id, DeepRockWallTile.id])
+        self.completion = 50
         self.ore_shaper.shape(self.wmap, z_seed=self.get_z_seed(), ore_id=SilverVeinWallTile.id,
                               possible_wall_ids=[DeepRockWallTile.id])
+        self.completion = 55
         self.ore_shaper.shape(self.wmap, z_seed=self.get_z_seed(), ore_id=GoldVeinWallTile.id,
                               possible_wall_ids=[DeepRockWallTile.id])
+        self.completion = 60
 
         # forests and plants
         self.message = 'Generating forests ...'
         self.forest_shaper.shape(self.wmap, z_seed=self.get_z_seed())
+        self.completion = 70
 
         self.message = 'Placing plants ...'
         self.single_wall_spawner.spawn(self.wmap, SeaweedWallTile.id, [ShallowWaterFloorTile.id], 0.01)
+        self.completion = 75
         self.single_wall_replacer.spawn(self.wmap, BerryBushWallTile.id, [TreeWallTile.id], 0.02)
+        self.completion = 80
 
         # structures
         self.message = 'Generating structures ...'
         self.plank_shack_generator.generate(self.wmap, [GrassFloorTile.id], 0.001, 100)
+        self.completion = 85
         self.mountain_fortress_generator.generate(self.wmap, [SurfaceStoneFloorTile.id], 0.0005, 300)
+        self.completion = 90
 
         # treasure chests
         self.message = 'Placing treasures ...'
@@ -70,6 +83,7 @@ class MapBuilder:
                                        [GrassFloorTile.id], 0.0005)
         self.single_wall_spawner.spawn(self.wmap, WoodenTreasureChestWallTile.id,
                                        [SurfaceStoneFloorTile.id, DeepStoneFloorTile.id], 0.003)
+        self.completion = 95
         self.single_wall_spawner.spawn(self.wmap, WaterTreasureChestWallTile.id,
                                        [SandFloorTile.id, ShallowWaterFloorTile.id], 0.0005)
         self.single_wall_spawner.spawn(self.wmap, MagicTreasureChestWallTile.id,
