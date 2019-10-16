@@ -4,7 +4,7 @@ import pygame
 class ViewInfo:
 
     # default background color
-    BACKGROUND_COLOR: tuple = (0, 0, 0)
+    BACKGROUND_COLOR: tuple = (0, 0, 30)
 
     # window size in unit
     SIZE_UNITS_X: int = 35

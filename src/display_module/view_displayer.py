@@ -5,6 +5,9 @@ from src.display_module.views.about_view import AboutView
 from src.display_module.views.load_game_view import LoadGameView
 from src.display_module.views.new_game_view import NewGameView
 from src.display_module.views.generating_world_view import GeneratingWorldView
+from src.display_module.views.controls_view import ControlsView
+
+from src.display_module.views.default_view import DefaultView
 
 
 class ViewDisplayer:
@@ -36,6 +39,11 @@ class ViewDisplayer:
             return NewGameView()
         elif app_state == AppStates.GENERATING_MAP:
             return GeneratingWorldView()
+        elif app_state == AppStates.CONTROLS:
+            return ControlsView()
+
+        else:
+            return DefaultView()
 
     """
     based on current game state displays the correct view

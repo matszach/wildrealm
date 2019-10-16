@@ -9,6 +9,7 @@ class AppStates:
     NEW_GAME_MENU: int = id_generator.next()
     LOAD_GAME_MENU: int = id_generator.next()
     GENERATING_MAP: int = id_generator.next()
+    CONTROLS: int = id_generator.next()
     ABOUT: int = id_generator.next()
     IN_GAME_PLAY: int = id_generator.next()
     IN_GAME_PAUSED: int = id_generator.next()
