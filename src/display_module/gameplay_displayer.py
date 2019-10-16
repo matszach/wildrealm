@@ -18,25 +18,21 @@ class GameplayDisplayer:
     """
     @staticmethod
     def _draw_floor_tile_as_color(surface, wmap: WorldMap, x: int, y: int, draw_x: int, draw_y: int):
-        try:
+        if 0 <= x < wmap.x_size and 0 <= y < wmap.y_size:
             color = FLOOR_TILES_BY_ID[wmap.floors[x, y]].color
             u = ViewInfo.unit
             pygame.draw.rect(surface, color,
                              (ViewInfo.offset_x + draw_x * u, ViewInfo.offset_y + draw_y * u, ceil(u), ceil(u)))
-        except IndexError:
-            pass
 
     @staticmethod
     def _draw_wall_tile_as_color(surface, wmap: WorldMap, x: int, y: int, draw_x: int, draw_y: int):
-        try:
+        if 0 <= x < wmap.x_size and 0 <= y < wmap.y_size:
             color = WALL_TILES_BY_ID[wmap.walls[x, y]].color
             u = ViewInfo.unit
             if color:
                 pygame.draw.rect(surface, color,
                                  (ViewInfo.offset_x + (draw_x + 0.05) * u, ViewInfo.offset_y + (draw_y + 0.05) * u
                                   , ceil(u * 0.9), ceil(u * 0.9)))
-        except IndexError:
-            pass
 
     """
     based on current game state displays the game-play
