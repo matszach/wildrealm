@@ -16,11 +16,11 @@ class ConfirmExitView(View):
         self.nodes.append(BigText(13, 11, 9, 2, 'SURE ?'))
 
         # yes button
-        yes_button = Button(13, 14, 9, 2, 'Yes', lambda: Game.set_app_state(AppStates.MAIN_MENU))
+        yes_button = Button(12, 14, 11, 2, 'Yes', lambda: Game.set_app_state(AppStates.MAIN_MENU))
         yes_button.activate()
         self.nodes.append(yes_button)
 
         # no button
-        no_button = Button(13, 17, 9, 2, 'No', lambda: Game.set_app_state(AppStates.IN_GAME_PAUSED))
+        no_button = Button(12, 17, 11, 2, 'No', lambda: Game.set_app_state(AppStates.IN_GAME_PAUSED))
         no_button.activate()
         self.nodes.append(no_button)

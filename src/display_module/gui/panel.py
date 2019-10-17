@@ -23,4 +23,4 @@ class Panel(GuiNode):
 class InGameMenuPanel(Panel):
 
     def __init__(self, y: float, height: float):
-        Panel.__init__(self, 12, y, 11, height)
+        Panel.__init__(self, 10, y, 15, height)

@@ -68,6 +68,7 @@ class Game:
     def save_game(slot_id: int):
         Game.saver_loader.save(Game.game_state, f'saved_games\\game{slot_id}.sav')
         Game.map_painter.paint_map(Game.game_state.world_map, f'saved_games\\map{slot_id}.png')
+        Game.app_state = AppStates.IN_GAME_PAUSED
 
     @staticmethod
     def load_game(slot_id: int):
