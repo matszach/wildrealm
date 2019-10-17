@@ -43,6 +43,14 @@ class Game:
     key_input_handler: KeyInputHandler = KeyInputHandler()
 
     """
+    exits the app
+    """
+    @staticmethod
+    def exit():
+        Game.handle_close()
+        sys.exit()
+
+    """
     sets app state
     """
     @staticmethod
@@ -124,8 +132,7 @@ class Game:
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    Game.handle_close()
-                    sys.exit()
+                    Game.exit()
                 if event.type == pygame.VIDEORESIZE:
                     ViewInfo.adjust(event)
                     surface = pygame.display.set_mode((event.w, event.h), flags)

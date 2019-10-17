@@ -6,6 +6,9 @@ from src.display_module.views.load_game_view import LoadGameView
 from src.display_module.views.new_game_view import NewGameView
 from src.display_module.views.generating_world_view import GeneratingWorldView
 from src.display_module.views.controls_view import ControlsView
+from src.display_module.views.in_game_play_view import InGamePlayView
+from src.display_module.views.in_game_paused_view import InGamePausedView
+from src.display_module.views.confirm_exit_view import ConfirmExitView
 
 from src.display_module.views.default_view import DefaultView
 
@@ -41,6 +44,12 @@ class ViewDisplayer:
             return GeneratingWorldView()
         elif app_state == AppStates.CONTROLS:
             return ControlsView()
+        elif app_state == AppStates.IN_GAME_PLAY:
+            return InGamePlayView()
+        elif app_state == AppStates.IN_GAME_PAUSED:
+            return InGamePausedView()
+        elif app_state == AppStates.IN_GAME_CONFIRM_EXIT:
+            return ConfirmExitView()
 
         else:
             return DefaultView()

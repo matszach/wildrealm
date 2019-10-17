@@ -16,4 +16,6 @@ class AppStates:
     IN_GAME_SAVE_GAME: int = id_generator.next()
     IN_GAME_INVENTORY: int = id_generator.next()
     IN_GAME_GAME_OVER: int = id_generator.next()
+    IN_GAME_CONFIRM_EXIT: int = id_generator.next()
+
 

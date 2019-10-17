@@ -5,7 +5,7 @@ from src.display_module.view_info import ViewInfo
 import pygame
 from src.map_module.tile_types.floor_tiles.list import FLOOR_TILES_BY_ID
 from src.map_module.tile_types.wall_tiles.list import WALL_TILES_BY_ID
-from math import ceil, floor
+from math import ceil
 
 
 class GameplayDisplayer:
@@ -34,25 +34,36 @@ class GameplayDisplayer:
                                  (ViewInfo.offset_x + (draw_x + 0.05) * u, ViewInfo.offset_y + (draw_y + 0.05) * u
                                   , ceil(u * 0.9), ceil(u * 0.9)))
 
+    @staticmethod
+    def _draw_tiles(surface, game_state: GameState):
+        x_offset = int((ViewInfo.SIZE_UNITS_X - 1) / 2)
+        y_offset = int((ViewInfo.SIZE_UNITS_Y - 1) / 2)
+
+        for draw_x in range(ViewInfo.SIZE_UNITS_X):
+            for draw_y in range(ViewInfo.SIZE_UNITS_Y):
+                x = game_state.player.x + draw_x - x_offset
+                y = game_state.player.y + draw_y - y_offset
+
+                GameplayDisplayer._draw_floor_tile_as_color(surface, game_state.world_map, x, y, draw_x, draw_y)
+                GameplayDisplayer._draw_wall_tile_as_color(surface, game_state.world_map, x, y, draw_x, draw_y)
+
+    @staticmethod
+    def _draw_shading(surface):
+        shade = pygame.Surface(ViewInfo.window_size)
+        shade.set_alpha(210)
+        shade.fill((0, 0, 20))
+        surface.blit(shade, (0, 0))
+
     """
     based on current game state displays the game-play
     """
     @staticmethod
     def display(surface, app_state: int, game_state: GameState):
 
-        # TODO TEMP
+        if app_state == AppStates.IN_GAME_PLAY:
+            GameplayDisplayer._draw_tiles(surface, game_state)
 
-        if app_state != AppStates.IN_GAME_PLAY:
-            return
-
-        x_offset = int((ViewInfo.SIZE_UNITS_X - 1)/2)
-        y_offset = int((ViewInfo.SIZE_UNITS_Y - 1)/2)
-
-        for draw_x in range(ViewInfo.SIZE_UNITS_X):
-            for draw_y in range(ViewInfo.SIZE_UNITS_Y):
-
-                x = game_state.player.x + draw_x - x_offset
-                y = game_state.player.y + draw_y - y_offset
-
-                GameplayDisplayer._draw_floor_tile_as_color(surface, game_state.world_map, x, y, draw_x, draw_y)
-                GameplayDisplayer._draw_wall_tile_as_color(surface, game_state.world_map, x, y, draw_x, draw_y)
+        elif app_state in [AppStates.IN_GAME_PAUSED, AppStates.IN_GAME_SAVE_GAME, AppStates.IN_GAME_CONFIRM_EXIT,
+                           AppStates.IN_GAME_INVENTORY]:
+            GameplayDisplayer._draw_tiles(surface, game_state)
+            GameplayDisplayer._draw_shading(surface)

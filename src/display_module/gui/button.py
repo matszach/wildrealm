@@ -13,29 +13,36 @@ class Button(GuiNode):
         if self.disabled:
             rect = (off_x + self.x_start * u, off_y + self.y_start * u,
                     self.width * u, self.height * u)
-            color = (80, 80, 100)
+            color_button_bg = (80, 80, 100)
+            color_button_border = (50, 50, 70)
             font_size = u / 1.2
             font_color = (30, 30, 30)
         elif self.pressed:
             rect = (off_x + (self.x_start + 0.05) * u, off_y + (self.y_start + 0.05) * u,
                     (self.width - 0.1) * u, (self.height - 0.1) * u)
-            color = (100, 100, 130)
+            color_button_bg = (100, 100, 130)
+            color_button_border = (70, 70, 100)
             font_size = u/1.22
             font_color = (0, 0, 10)
         elif self.hover:
             rect = (off_x + (self.x_start - 0.05) * u, off_y + (self.y_start - 0.05) * u,
                     (self.width + 0.1) * u, (self.height + 0.1) * u)
-            color = (100, 100, 170)
+            color_button_bg = (100, 100, 170)
+            color_button_border = (70, 70, 140)
             font_size = u/1.18
             font_color = (0, 0, 30)
         else:
             rect = (off_x + self.x_start * u, off_y + self.y_start * u,
                     self.width * u, self.height * u)
-            color = (100, 100, 150)
+            color_button_bg = (100, 100, 150)
+            color_button_border = (70, 70, 120)
             font_size = u/1.2
             font_color = (0, 0, 20)
 
-        pygame.draw.rect(pygame_surface, color, rect)
+        border_width = int(u/5)
+
+        pygame.draw.rect(pygame_surface, color_button_bg, rect)
+        pygame.draw.rect(pygame_surface, color_button_border, rect, border_width)
 
         font = pygame.font.Font('assets\\fonts\\menu_font.otf', int(font_size))
         txt_surf = font.render(self.text, True, font_color)
