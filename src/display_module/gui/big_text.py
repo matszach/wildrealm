@@ -11,8 +11,8 @@ class BigText(GuiNode):
         off_x = ViewInfo.offset_x
         off_y = ViewInfo.offset_y
 
-        font_size = u / 1.2
-        font_color = (0, 0, 20)
+        font_size = u / 0.7
+        font_color = (235, 235, 255)
 
         font = pygame.font.Font('assets\\fonts\\menu_font.otf', int(font_size))
         txt_surf = font.render(self.text, True, font_color)

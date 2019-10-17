@@ -9,7 +9,9 @@ class GameStateSaverLoader:
     def save(gs: GameState, path: str):
         file = open(path, 'wb')
         pickle.dump(gs, file)
+        file.close()
 
     @staticmethod
     def load(path: str) -> GameState:
-        return pickle.load(path)
+        file = open(path, 'rb')
+        return pickle.load(file)

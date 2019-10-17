@@ -10,9 +10,10 @@ class ConfirmExitView(View):
     def initiate(self):
         from src.game_core_module.game import Game
 
-        self.nodes.append(InGameMenuPanel(10, 10))
+        self.nodes.append(InGameMenuPanel(8.5, 11.5))
 
-        self.nodes.append(BigText(13, 11, 9, 2, 'ARE YOU SURE ?'))
+        self.nodes.append(BigText(13, 9.5, 9, 2, 'ARE YOU'))
+        self.nodes.append(BigText(13, 11, 9, 2, 'SURE ?'))
 
         # yes button
         yes_button = Button(13, 14, 9, 2, 'Yes', lambda: Game.set_app_state(AppStates.MAIN_MENU))

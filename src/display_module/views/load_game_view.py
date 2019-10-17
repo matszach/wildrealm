@@ -8,7 +8,7 @@ class LoadGameView(View):
     def initiate(self):
         from src.game_core_module.game import Game
 
-        # save state buttons
+        # load state buttons
         load_button_1 = Button(12, 3, 11, 2, f'Save state 1',
                                lambda: Game.load_game(1))
         if Game.load_file_exists(1):
@@ -34,7 +34,6 @@ class LoadGameView(View):
         if Game.load_file_exists(5):
             load_button_5.activate()
         self.nodes.append(load_button_5)
-
 
         # return button
         return_button = Button(13, 18, 9, 2, 'Return',
