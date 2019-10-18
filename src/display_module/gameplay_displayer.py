@@ -48,6 +48,13 @@ class GameplayDisplayer:
                 GameplayDisplayer._draw_wall_tile_as_color(surface, game_state.world_map, x, y, draw_x, draw_y)
 
     @staticmethod
+    def _draw_player(surface, game_state: GameState):
+        color = (255, 0, 255)
+        u = ViewInfo.unit
+        pygame.draw.rect(surface, color,
+                         (ViewInfo.offset_x + 17 * u, ViewInfo.offset_y + 10 * u, ceil(u), ceil(u)))
+
+    @staticmethod
     def _draw_shading(surface):
         shade = pygame.Surface(ViewInfo.window_size)
         shade.set_alpha(210)
@@ -62,8 +69,10 @@ class GameplayDisplayer:
 
         if app_state == AppStates.IN_GAME_PLAY:
             GameplayDisplayer._draw_tiles(surface, game_state)
+            GameplayDisplayer._draw_player(surface, game_state)
 
         elif app_state in [AppStates.IN_GAME_PAUSED, AppStates.IN_GAME_SAVE_GAME, AppStates.IN_GAME_CONFIRM_EXIT,
                            AppStates.IN_GAME_INVENTORY]:
             GameplayDisplayer._draw_tiles(surface, game_state)
+            GameplayDisplayer._draw_player(surface, game_state)
             GameplayDisplayer._draw_shading(surface)

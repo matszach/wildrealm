@@ -14,7 +14,7 @@ class NewGameStarter:
     def get_prepared_game_state(self) -> GameState:
         # TODO player placing logic
         p: Player = Player()
-        p.move_to(100, 100)
+        p.place_at(100, 100)
         return GameState(p, self.builder.wmap)
 
     def get_progress(self) -> tuple:

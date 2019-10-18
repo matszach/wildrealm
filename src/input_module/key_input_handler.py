@@ -42,13 +42,13 @@ class KeyInputHandler:
         if app_state == AppStates.IN_GAME_PLAY:
             player = game_state.player
             if keys[pygame.K_w] or keys[pygame.K_UP]:
-                player.y -= 1
+                player.move(player.MOVE_DIR_UP)
             elif keys[pygame.K_s] or keys[pygame.K_DOWN]:
-                player.y += 1
+                player.move(player.MOVE_DIR_DOWN)
             elif keys[pygame.K_a] or keys[pygame.K_LEFT]:
-                player.x -= 1
+                player.move(player.MOVE_DIR_LEFT)
             elif keys[pygame.K_d] or keys[pygame.K_RIGHT]:
-                player.x += 1
+                player.move(player.MOVE_DIR_RIGHT)
             elif keys[pygame.K_i]:
                 KeyInputHandler.change_app_state(AppStates.IN_GAME_INVENTORY)
             elif keys[pygame.K_p]:
