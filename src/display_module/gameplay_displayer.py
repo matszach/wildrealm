@@ -7,6 +7,7 @@ import pygame
 from src.map_module.tile_types.floor_tiles.list import FLOOR_TILES_BY_ID
 from src.map_module.tile_types.wall_tiles.list import WALL_TILES_BY_ID
 from math import ceil
+from src.input_module.mouse_handler import MouseHandler
 
 
 class GameplayDisplayer:
@@ -69,11 +70,24 @@ class GameplayDisplayer:
 
     @staticmethod
     def _draw_player(surface, game_state: GameState):
-        image = ImageLoader.CREATURES['player']  # TEMP TODO
+        image = ImageLoader.CREATURES['player']  # TEMP TODO image based on character field
         u = ViewInfo.unit
         image = pygame.transform.scale(image, (int(u), int(u)))
         origin = (ViewInfo.offset_x + 17 * u, ViewInfo.offset_y + 10 * u)
         surface.blit(image, origin)
+
+    @staticmethod
+    def _draw_mouse_highlight(surface, game_state: GameState):
+        # TODO color based on selected item
+        u = ViewInfo.unit
+        x = MouseHandler.mouse_pos[0]
+        x = x - (x - ViewInfo.offset_x) % u
+        y = MouseHandler.mouse_pos[1]
+        y = y - (y - ViewInfo.offset_y) % u
+        color = (0, 0, 255)
+        rect = (x, y, u, u)
+        width = int(u/10)
+        pygame.draw.rect(surface, color, rect, width)
 
     @staticmethod
     def _draw_shading(surface):
@@ -91,6 +105,7 @@ class GameplayDisplayer:
         if app_state == AppStates.IN_GAME_PLAY:
             GameplayDisplayer._draw_tiles(surface, game_state)
             GameplayDisplayer._draw_player(surface, game_state)
+            GameplayDisplayer._draw_mouse_highlight(surface, game_state)
 
         elif app_state in [AppStates.IN_GAME_PAUSED, AppStates.IN_GAME_SAVE_GAME, AppStates.IN_GAME_CONFIRM_EXIT,
                            AppStates.IN_GAME_INVENTORY]:
