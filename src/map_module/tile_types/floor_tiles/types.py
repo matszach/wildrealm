@@ -1,6 +1,7 @@
 from src.map_module.tile_types.floor_tiles._floor_tile import FloorTileType
 from src.map_module.tile_types.floor_tiles.const import *
 from util.id_generator import IdGenerator
+from src.display_module.image_asset_loader.image_loader import ImageLoader
 
 
 id_gen = IdGenerator()
@@ -10,7 +11,7 @@ id_gen = IdGenerator()
 class DeepWaterFloorTile(FloorTileType):
     id = id_gen.next()
     name = 'deep water'
-    image = None
+    image = ImageLoader.FLOORS['deep_water']
     color = (0, 0, 80)
     speed_mod = FLOOR_SPEED_HALT
     swimming = True
@@ -20,7 +21,7 @@ class DeepWaterFloorTile(FloorTileType):
 class ShallowWaterFloorTile(FloorTileType):
     id = id_gen.next()
     name = 'shallow water'
-    image = None
+    image = ImageLoader.FLOORS['shallow_water']
     color = (0, 0, 180)
     speed_mod = FLOOR_SPEED_HEAVY_SLOW
     swimming = True
@@ -31,7 +32,7 @@ class ShallowWaterFloorTile(FloorTileType):
 class SandFloorTile(FloorTileType):
     id = id_gen.next()
     name = 'sand'
-    image = None
+    image = ImageLoader.FLOORS['sand']
     color = (180, 180, 0)
     speed_mod = FLOOR_SPEED_LIGHT_SLOW
     swimming = False
@@ -42,7 +43,7 @@ class SandFloorTile(FloorTileType):
 class GrassFloorTile(FloorTileType):
     id = id_gen.next()
     name = 'grass'
-    image = None
+    image = ImageLoader.FLOORS['grass']
     color = (0, 180, 0)
     speed_mod = FLOOR_SPEED_DEFAULT
     swimming = False
@@ -53,7 +54,7 @@ class GrassFloorTile(FloorTileType):
 class SurfaceStoneFloorTile(FloorTileType):
     id = id_gen.next()
     name = 'surface stone'
-    image = None
+    image = ImageLoader.FLOORS['surface_stone']
     color = (110, 110, 110)
     speed_mod = FLOOR_SPEED_DEFAULT
     swimming = False
@@ -63,7 +64,7 @@ class SurfaceStoneFloorTile(FloorTileType):
 class DeepStoneFloorTile(FloorTileType):
     id = id_gen.next()
     name = 'deep stone'
-    image = None
+    image = ImageLoader.FLOORS['deep_stone']
     color = (80, 80, 80)
     speed_mod = FLOOR_SPEED_DEFAULT
     swimming = False
@@ -74,7 +75,7 @@ class DeepStoneFloorTile(FloorTileType):
 class PlankFloorTile(FloorTileType):
     id = id_gen.next()
     name = 'plank floor'
-    image = None
+    image = ImageLoader.FLOORS['plank_floor']
     color = (150, 120, 0)
     speed_mod = FLOOR_SPEED_DEFAULT
     swimming = False
@@ -84,7 +85,7 @@ class PlankFloorTile(FloorTileType):
 class StoneBrickFloorTile(FloorTileType):
     id = id_gen.next()
     name = 'stone brick floor'
-    image = None
+    image = ImageLoader.FLOORS['stone_brick_floor']
     color = (90, 60, 60)
     speed_mod = FLOOR_SPEED_DEFAULT
     swimming = False

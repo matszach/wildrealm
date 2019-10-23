@@ -18,7 +18,7 @@ class Creature:
     movement handling
     """
     def move(self, direction: int):
-        if self.movement_cooldown:
+        if self.movement_cooldown > 0:
             return
         if direction == Creature.MOVE_DIR_UP:
             if not Creature._can_move_to_tile(self.x, self.y - 1):
@@ -61,7 +61,7 @@ class Creature:
     def _movement_cooldown_thread(self):
         mod = self._get_speed_mod_for_floor(self.x, self.y)
         self.movement_cooldown = self._calc_movement_cooldown(mod)
-        while self.movement_cooldown:
+        while self.movement_cooldown > 0:
             time.sleep(0.01)
             if self._get_app_state() == AppStates.IN_GAME_PLAY:
                 self.movement_cooldown -= 1
@@ -114,4 +114,5 @@ class Creature:
         # creature's location
         self.x: int = 0
         self.y: int = 0
+
 

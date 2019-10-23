@@ -19,11 +19,16 @@ class WallTileType:
     # states if the wall tile can be broken
     breakable: bool = False
 
-    # minimum power required to break
+    # minimum tool power required to break
     resistance: int = 0
 
     # chance of breaking on hit
-    durability: float = 1
+    break_chance: float = 1
+
+    # indicates that the wall should be harvested with a pick / axe,
+    # to have its break chance doubled and resistance reduced by 1
+    pick_harvested: bool = False
+    axe_harvested: bool = False
 
     # states if breaking the wall has a chance to drop a piece of loot
     drops_loot: bool = False

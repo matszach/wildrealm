@@ -13,6 +13,7 @@ from src.display_module.view_displayer import ViewDisplayer
 from src.display_module.gameplay_displayer import GameplayDisplayer
 from src.input_module.key_input_handler import KeyInputHandler
 from src.input_module.mouse_handler import MouseHandler
+from src.display_module.image_asset_loader.image_loader import ImageLoader
 
 
 # represents the application proper
@@ -122,7 +123,8 @@ class Game:
 
         pygame.font.init()
         pygame.display.set_caption('Wildrealm')
-        # pygame.display.set_icon(GAME_ICON)
+        ImageLoader.load()
+        pygame.display.set_icon(ImageLoader.ICON)
 
         while True:
 

@@ -2,6 +2,7 @@ from src.game_core_module.app_states import AppStates
 from src.game_core_module.game_state.game_state import GameState
 from src.map_module.worldmap import WorldMap
 from src.display_module.view_info import ViewInfo
+from src.display_module.image_asset_loader.image_loader import ImageLoader
 import pygame
 from src.map_module.tile_types.floor_tiles.list import FLOOR_TILES_BY_ID
 from src.map_module.tile_types.wall_tiles.list import WALL_TILES_BY_ID
@@ -25,6 +26,15 @@ class GameplayDisplayer:
                              (ViewInfo.offset_x + draw_x * u, ViewInfo.offset_y + draw_y * u, ceil(u), ceil(u)))
 
     @staticmethod
+    def _draw_floor_tile_as_image(surface, wmap: WorldMap, x: int, y: int, draw_x: int, draw_y: int):
+        if 0 <= x < wmap.x_size and 0 <= y < wmap.y_size:
+            image = FLOOR_TILES_BY_ID[wmap.floors[x, y]].image
+            u = ViewInfo.unit
+            image = pygame.transform.scale(image, (int(u), int(u)))
+            origin = (ViewInfo.offset_x + draw_x * u, ViewInfo.offset_y + draw_y * u)
+            surface.blit(image, origin)
+
+    @staticmethod
     def _draw_wall_tile_as_color(surface, wmap: WorldMap, x: int, y: int, draw_x: int, draw_y: int):
         if 0 <= x < wmap.x_size and 0 <= y < wmap.y_size:
             color = WALL_TILES_BY_ID[wmap.walls[x, y]].color
@@ -33,6 +43,16 @@ class GameplayDisplayer:
                 pygame.draw.rect(surface, color,
                                  (ViewInfo.offset_x + (draw_x + 0.05) * u, ViewInfo.offset_y + (draw_y + 0.05) * u
                                   , ceil(u * 0.9), ceil(u * 0.9)))
+
+    @staticmethod
+    def _draw_wall_tile_as_image(surface, wmap: WorldMap, x: int, y: int, draw_x: int, draw_y: int):
+        if 0 <= x < wmap.x_size and 0 <= y < wmap.y_size:
+            image = WALL_TILES_BY_ID[wmap.walls[x, y]].image
+            if image:
+                u = ViewInfo.unit
+                image = pygame.transform.scale(image, (int(u), int(u)))
+                origin = (ViewInfo.offset_x + draw_x * u, ViewInfo.offset_y + draw_y * u)
+                surface.blit(image, origin)
 
     @staticmethod
     def _draw_tiles(surface, game_state: GameState):
@@ -44,15 +64,16 @@ class GameplayDisplayer:
                 x = game_state.player.x + draw_x - x_offset
                 y = game_state.player.y + draw_y - y_offset
 
-                GameplayDisplayer._draw_floor_tile_as_color(surface, game_state.world_map, x, y, draw_x, draw_y)
-                GameplayDisplayer._draw_wall_tile_as_color(surface, game_state.world_map, x, y, draw_x, draw_y)
+                GameplayDisplayer._draw_floor_tile_as_image(surface, game_state.world_map, x, y, draw_x, draw_y)
+                GameplayDisplayer._draw_wall_tile_as_image(surface, game_state.world_map, x, y, draw_x, draw_y)
 
     @staticmethod
     def _draw_player(surface, game_state: GameState):
-        color = (255, 0, 255)
+        image = ImageLoader.CREATURES['player']  # TEMP TODO
         u = ViewInfo.unit
-        pygame.draw.rect(surface, color,
-                         (ViewInfo.offset_x + 17 * u, ViewInfo.offset_y + 10 * u, ceil(u), ceil(u)))
+        image = pygame.transform.scale(image, (int(u), int(u)))
+        origin = (ViewInfo.offset_x + 17 * u, ViewInfo.offset_y + 10 * u)
+        surface.blit(image, origin)
 
     @staticmethod
     def _draw_shading(surface):
