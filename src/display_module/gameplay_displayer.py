@@ -30,7 +30,7 @@ class GameplayDisplayer:
         if 0 <= x < wmap.x_size and 0 <= y < wmap.y_size:
             image = FLOOR_TILES_BY_ID[wmap.floors[x, y]].image
             u = ViewInfo.unit
-            image = pygame.transform.scale(image, (int(u), int(u)))
+            image = pygame.transform.scale(image, (ceil(u), ceil(u)))
             origin = (ViewInfo.offset_x + draw_x * u, ViewInfo.offset_y + draw_y * u)
             surface.blit(image, origin)
 
@@ -50,7 +50,7 @@ class GameplayDisplayer:
             image = WALL_TILES_BY_ID[wmap.walls[x, y]].image
             if image:
                 u = ViewInfo.unit
-                image = pygame.transform.scale(image, (int(u), int(u)))
+                image = pygame.transform.scale(image, (ceil(u), ceil(u)))
                 origin = (ViewInfo.offset_x + draw_x * u, ViewInfo.offset_y + draw_y * u)
                 surface.blit(image, origin)
 
