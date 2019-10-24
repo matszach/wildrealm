@@ -26,8 +26,8 @@ class VisibilityCalculator:
     @staticmethod
     def _check_visibility_in_direction(x: int, y: int, sight_range: int, direction: float, walls):
         for s in range(0, sight_range):
-            x_f = int(x + cos(direction) * s)
-            y_f = int(y + sin(direction) * s)
+            x_f = round(x + cos(direction) * s)
+            y_f = round(y + sin(direction) * s)
             VisibilityCalculator._add_tile((x_f, y_f))
             if WALL_TILES_BY_ID[walls[x_f, y_f]].blocks_vision:
                 return
