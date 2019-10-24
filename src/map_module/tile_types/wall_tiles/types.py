@@ -13,6 +13,7 @@ class AirWallTile(WallTileType):
     name = 'air'
     image = None
     color = None
+    blocks_vision = False
     blocks_movement = False
     breakable = False
     drops_loot = False
@@ -24,6 +25,7 @@ class TreeWallTile(WallTileType):
     name = 'tree'
     image = ImageLoader.WALLS['tree']
     color = (0, 90, 0)
+    blocks_vision = False
     blocks_movement = True
     breakable = True
     resistance = WALL_RESISTANCE_TIER_1
@@ -39,6 +41,7 @@ class SeaweedWallTile(WallTileType):
     name = 'seaweed'
     image = ImageLoader.WALLS['seaweed']
     color = (150, 250, 0)
+    blocks_vision = False
     blocks_movement = True
     breakable = True
     resistance = WALL_RESISTANCE_TIER_1
@@ -54,6 +57,7 @@ class BerryBushWallTile(WallTileType):
     name = 'berry bush'
     image = ImageLoader.WALLS['berry_bush']
     color = (250, 0, 0)
+    blocks_vision = False
     blocks_movement = True
     breakable = True
     resistance = WALL_RESISTANCE_TIER_1
@@ -70,6 +74,7 @@ class SurfaceRockWallTile(WallTileType):
     name = 'surface rock'
     image = ImageLoader.WALLS['surface_rock']
     color = (40, 40, 40)
+    blocks_vision = True
     blocks_movement = True
     breakable = True
     resistance = WALL_RESISTANCE_TIER_2
@@ -85,6 +90,7 @@ class DeepRockWallTile(WallTileType):
     name = 'deep rock'
     image = ImageLoader.WALLS['deep_rock']
     color = (20, 20, 20)
+    blocks_vision = True
     blocks_movement = True
     breakable = True
     resistance = WALL_RESISTANCE_TIER_3
@@ -101,6 +107,7 @@ class CopperVeinWallTile(WallTileType):
     name = 'copper vein'
     image = ImageLoader.WALLS['copper_vein']
     color = (250, 120, 0)
+    blocks_vision = True
     blocks_movement = True
     breakable = True
     resistance = WALL_RESISTANCE_TIER_2
@@ -116,6 +123,7 @@ class IronVeinWallTile(WallTileType):
     name = 'iron vein'
     image = ImageLoader.WALLS['iron_vein']
     color = (190, 120, 50)
+    blocks_vision = True
     blocks_movement = True
     breakable = True
     resistance = WALL_RESISTANCE_TIER_3
@@ -131,6 +139,7 @@ class SilverVeinWallTile(WallTileType):
     name = 'silver vein'
     image = ImageLoader.WALLS['silver_vein']
     color = (90, 90, 180)
+    blocks_vision = True
     blocks_movement = True
     breakable = True
     resistance = WALL_RESISTANCE_TIER_4
@@ -146,6 +155,7 @@ class GoldVeinWallTile(WallTileType):
     name = 'gold vein'
     image = ImageLoader.WALLS['gold_vein']
     color = (250, 180, 0)
+    blocks_vision = True
     blocks_movement = True
     breakable = True
     resistance = WALL_RESISTANCE_TIER_5
@@ -162,6 +172,7 @@ class WoodenTreasureChestWallTile(WallTileType):
     name = 'wooden treasure chest'
     image = ImageLoader.WALLS['wooden_chest']
     color = (60, 20, 0)
+    blocks_vision = False
     blocks_movement = True
     breakable = True
     resistance = WALL_RESISTANCE_TIER_1
@@ -177,6 +188,7 @@ class WaterTreasureChestWallTile(WallTileType):
     name = 'water treasure chest'
     image = ImageLoader.WALLS['water_chest']
     color = (0, 250, 250)
+    blocks_vision = False
     blocks_movement = True
     breakable = True
     resistance = WALL_RESISTANCE_TIER_3
@@ -192,6 +204,7 @@ class MagicTreasureChestWallTile(WallTileType):
     name = 'magic treasure chest'
     image = ImageLoader.WALLS['magic_chest']
     color = (250, 0, 250)
+    blocks_vision = False
     blocks_movement = True
     breakable = True
     resistance = WALL_RESISTANCE_TIER_5
@@ -208,6 +221,7 @@ class PlankWallTile(WallTileType):
     name = 'plank wall'
     image = ImageLoader.WALLS['plank_wall']
     color = (100, 70, 0)
+    blocks_vision = True
     blocks_movement = True
     breakable = True
     resistance = WALL_RESISTANCE_TIER_2
@@ -223,6 +237,7 @@ class StoneBrickWallTile(WallTileType):
     name = 'stone brick wall'
     image = ImageLoader.WALLS['stone_brick_wall']
     color = (30, 10, 10)
+    blocks_vision = True
     blocks_movement = True
     breakable = True
     resistance = WALL_RESISTANCE_TIER_3

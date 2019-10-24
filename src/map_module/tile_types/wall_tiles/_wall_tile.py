@@ -13,6 +13,9 @@ class WallTileType:
     # RGB color, for exported mam / in-game mini-map
     color: tuple = (0, 0, 0)
 
+    # block character's sight and light (if any)
+    blocks_vision: bool = True
+
     # states if the wall tile can be traveled through
     blocks_movement: bool = True
 

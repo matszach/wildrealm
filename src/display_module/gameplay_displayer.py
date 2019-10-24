@@ -8,6 +8,7 @@ from src.map_module.tile_types.floor_tiles.list import FLOOR_TILES_BY_ID
 from src.map_module.tile_types.wall_tiles.list import WALL_TILES_BY_ID
 from math import ceil
 from src.input_module.mouse_handler import MouseHandler
+from src.display_module.visibility_calculator import VisibilityCalculator
 
 
 class GameplayDisplayer:
@@ -60,11 +61,14 @@ class GameplayDisplayer:
         x_offset = int((ViewInfo.SIZE_UNITS_X - 1) / 2)
         y_offset = int((ViewInfo.SIZE_UNITS_Y - 1) / 2)
 
-        for draw_x in range(ViewInfo.SIZE_UNITS_X):
-            for draw_y in range(ViewInfo.SIZE_UNITS_Y):
-                x = game_state.player.x + draw_x - x_offset
-                y = game_state.player.y + draw_y - y_offset
+        visible_fields = VisibilityCalculator.calculate(game_state)
 
+        for vf in visible_fields:
+            x = vf[0]
+            y = vf[1]
+            draw_x = x + x_offset - game_state.player.x
+            draw_y = y + y_offset - game_state.player.y
+            if 0 <= draw_x < ViewInfo.SIZE_UNITS_X and 0 <= draw_y < ViewInfo.SIZE_UNITS_Y:
                 GameplayDisplayer._draw_floor_tile_as_image(surface, game_state.world_map, x, y, draw_x, draw_y)
                 GameplayDisplayer._draw_wall_tile_as_image(surface, game_state.world_map, x, y, draw_x, draw_y)
 
